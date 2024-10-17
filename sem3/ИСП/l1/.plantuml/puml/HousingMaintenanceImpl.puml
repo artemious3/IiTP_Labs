@@ -1,0 +1,17 @@
+@startuml
+class HousingMaintenanceImpl {
+    + HousingMaintenanceImpl()
+    - FindIndexWithSurname(surname:string) : int?
+    + RegisterResident(surname:string) : void
+    + RegisterServicesConsumption(surname:string, resources:CommunalServices) : void
+    + GetServiceConsumption(surname:string) : CommunalServices
+    + GetServiceFees(surname:string) : int
+    + GetTotalConsumption() : CommunalServices
+    + GetTotalFees() : int
+}
+class "MyCustomCollection`1"<T> {
+}
+IHousingMaintenance <|-- HousingMaintenanceImpl
+HousingMaintenanceImpl --> "data<(string, CommunalServices)>" "MyCustomCollection`1"
+HousingMaintenanceImpl --> "Tariff" CommunalServices
+@enduml

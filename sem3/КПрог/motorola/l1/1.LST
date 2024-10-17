@@ -1,0 +1,11 @@
+  ADDR B1 B2 B3 B4 C:\users\artemious3\KProg\Lab1\1.asm             PAGE       1
+
+                    org $8000
+  8000 86 AA        ldaa #$AA
+  8002 C6 55        ldab #$55
+
+  8004 37           pshb
+  8005 16           tab
+  8006 32           pula
+
+  8007 8F           xgdx

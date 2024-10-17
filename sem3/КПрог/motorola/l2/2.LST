@@ -1,0 +1,33 @@
+  ADDR B1 B2 B3 B4 C:\users\artemious3\KProg\Lab2\2.asm             PAGE       1
+
+                     org $8000
+  8000 CE 82 20     ldx #$8220
+  8003 C6 20        ldab #$20
+
+  8005 E7 00       write stab 0,x   ; loading test data into memory
+  8007 09                 dex
+  8008 5A                 decb
+  8009 2A FA              bpl write ; if b is positive, go again
+
+
+  800B CE 82 20           ldx #$8220
+  800E 18 CE 00 20       ldy #$0020
+
+  8012 1E 00 04 05 copy  brset 0,x,#%00000100 iter ; if bit 3 is set, skip
+  8016 A6 00             ldaa 0,x
+  8018 18 A7 00          staa 0,y
+  801B 09          iter  dex
+  801C 18 09             dey
+  801E 26 F2             bne copy ; while y is nonzero
+
+  8020 1E 00 04 05       brset 0,x,#%00000100 end  ; process address 0
+  8024 A6 00             ldaa 0,x
+  8026 18 A7 00          staa 0,y ; copyhte
+  8029 3E          end   wai
+
+  Symbol Table 
+
+  END                8029
+  ITER               801B
+  COPY               8012
+  WRITE              8005

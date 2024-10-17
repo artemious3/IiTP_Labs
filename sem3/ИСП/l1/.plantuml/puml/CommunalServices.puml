@@ -1,0 +1,13 @@
+@startuml
+struct CommunalServices <<record>> {
+    + Gas : int <<get>> <<init>>
+    + Water : int <<get>> <<init>>
+    + Energy : int <<get>> <<init>>
+}
+class "IAdditionOperators`3"<T1,T2,T3> {
+}
+class "IMultiplyOperators`3"<T1,T2,T3> {
+}
+"IAdditionOperators`3" "<CommunalServices,CommunalServices,CommunalServices>" <|-- CommunalServices
+"IMultiplyOperators`3" "<CommunalServices,CommunalServices,int>" <|-- CommunalServices
+@enduml

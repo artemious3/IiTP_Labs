@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>672</width>
+    <height>655</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>смайл фейс</string>
+  </property>
+  <property name="whatsThis">
+   <string/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>600</y>
+      <width>651</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="openMouth">
+       <property name="text">
+        <string>Open Mouth</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="moveEyes">
+       <property name="text">
+        <string>Move Eyes</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="infoButton">
+       <property name="text">
+        <string>Info</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="FaceRenderer" name="renderArea" native="true">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>10</y>
+      <width>651</width>
+      <height>591</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FaceRenderer</class>
+   <extends>QWidget</extends>
+   <header>ellipserenderer.h</header>
+   <container>1</container>
+   <slots>
+    <slot>moveEllipse()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

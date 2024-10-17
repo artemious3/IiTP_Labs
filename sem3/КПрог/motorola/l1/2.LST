@@ -1,0 +1,22 @@
+  ADDR B1 B2 B3 B4 C:\users\artemious3\KProg\Lab1\2.asm             PAGE       1
+
+                    org $8000
+
+  8000 CE 00 14     ldx #20
+  8003 18 CE 00 1E  ldy #30
+  8007 CC 00 0A     ldd #10 ; loaded sample data into stacks
+
+  800A DF 00        stx $00
+  800C 18 DF 02     sty $02
+  800F 93 00        subd $00
+  8011 93 02        subd $02 ; loaded X and Y into memory and subtracted them
+.                  from D
+
+  8013 36           psha
+  8014 37           pshb ; pushed D into stack
+
+  8015 83 00 03     subd #3 ; subtracted 3 from D
+
+
+
+

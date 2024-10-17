@@ -1,0 +1,26 @@
+  ADDR B1 B2 B3 B4 C:\users\artemious3\KProg\Lab2\1.asm             PAGE       1
+
+                    org $8000
+
+  8000 CE 00 FF     ldx #%0000000011111111
+  8003 CC 3C 3C     ldd #%0011110000111100 ; load D and X
+
+  8006 43           coma
+  8007 53           comb ; invert D, making a bitmask of cleared bits
+
+  8008 97 00        staa $00
+  800A D7 01        stab $01 ; load D into memory
+
+  800C 8F           xgdx ; load X into D
+
+  800D 98 00        eora $00
+  800F D8 01        eorb $01 ; invert bits, that were zero at start
+
+  8011 8F           xgdx ; load D into X
+
+  8012 3E           wai ; end of program
+
+
+
+
+

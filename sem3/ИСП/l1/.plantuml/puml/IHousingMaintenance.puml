@@ -1,0 +1,11 @@
+@startuml
+interface IHousingMaintenance {
+    + RegisterResident(surname:string) : void
+    + RegisterServicesConsumption(surname:string, rc:CommunalServices) : void
+    + GetServiceConsumption(surname:string) : CommunalServices
+    + GetServiceFees(surname:string) : int
+    + GetTotalConsumption() : CommunalServices
+    + GetTotalFees() : int
+}
+IHousingMaintenance --> "Tariff" CommunalServices
+@enduml

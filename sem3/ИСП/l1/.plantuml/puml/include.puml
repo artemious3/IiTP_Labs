@@ -1,0 +1,70 @@
+@startuml
+struct CommunalServices <<record>> {
+    + Gas : int <<get>> <<init>>
+    + Water : int <<get>> <<init>>
+    + Energy : int <<get>> <<init>>
+}
+interface "ICustomCollection`1"<T> {
+    Reset() : void
+    Next() : void
+    Current() : T
+    Count : int <<get>>
+    Add(item:T) : void
+    Remove(item:T) : void
+    RemoveCurrent() : T
+}
+class HousingMaintenanceImpl {
+    + HousingMaintenanceImpl()
+    - FindIndexWithSurname(surname:string) : int?
+    + RegisterResident(surname:string) : void
+    + RegisterServicesConsumption(surname:string, resources:CommunalServices) : void
+    + GetServiceConsumption(surname:string) : CommunalServices
+    + GetServiceFees(surname:string) : int
+    + GetTotalConsumption() : CommunalServices
+    + GetTotalFees() : int
+}
+class "MyCustomCollection`1"<T> {
+}
+IHousingMaintenance <|-- HousingMaintenanceImpl
+HousingMaintenanceImpl --> "data<(string, CommunalServices)>" "MyCustomCollection`1"
+HousingMaintenanceImpl --> "Tariff" CommunalServices
+interface IHousingMaintenance {
+    + RegisterResident(surname:string) : void
+    + RegisterServicesConsumption(surname:string, rc:CommunalServices) : void
+    + GetServiceConsumption(surname:string) : CommunalServices
+    + GetServiceFees(surname:string) : int
+    + GetTotalConsumption() : CommunalServices
+    + GetTotalFees() : int
+}
+IHousingMaintenance --> "Tariff" CommunalServices
+
+class "IAdditionOperators`3"<T1,T2,T3> {
+}
+class "IMultiplyOperators`3"<T1,T2,T3> {
+}
+"IAdditionOperators`3" "<CommunalServices,CommunalServices,CommunalServices>" <|-- CommunalServices
+"IMultiplyOperators`3" "<CommunalServices,CommunalServices,int>" <|-- CommunalServices
+class "Node`1"<T> {
+    + data : T <<get>> <<set>>
+    + Node(t:T)
+}
+class "MyCustomCollection`1"<T> {
+    - first : Node<T>? = null
+    - last : Node<T>? = null
+    - cursor : Node<T>? = null
+    + Count : int <<get>> = 0
+    - getNodeWithIndex(index:int) : Node<T>
+    - UpdateLast() : void
+    + Reset() : void
+    + Next() : void
+    + Current() : T
+    + Remove(item:T) : void
+    + RemoveCurrent() : T
+    + Add(item:T) : void
+}
+class "ICustomCollection`1"<T> {
+}
+
+"Node`1" --> "next<T>" "Node`1"
+"ICustomCollection`1" "<T>" <|-- "MyCustomCollection`1"
+@enduml
