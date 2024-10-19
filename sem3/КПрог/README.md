@@ -1,22 +1,29 @@
 # Labs 1-2
 
-Процессор: Motorola 68HC11
-
-Симулятор: THRSim11
-
-Ассемблер: встроенный в THRSim11
-
-ОС: \[ неприменимо \]
+| CPU       | Motorola 68HC11 |
+| --------- | --------------- |
+| Simulator | THRSim11        |
+| OS        | -               |
+| Assembler | THRSim11        |
 
 # Labs 3-5
 
-Процессор: Intel 8086
 
-Эмулятор: DOSBox
+| CPU       | Intel 8086 |
+| --------- | ---------- |
+| Emulator  | DOSBox     |
+| OS        | DOS        |
+| Assembler | TASM       |
 
-Ассемблер: TASM
+# Lab 6
 
-ОС: DOS
 
+| CPU       | Any with x86-64 instruction set |
+| --------- | ------------------------------- |
+| Simulator | -                               |
+| OS        | Linux                           |
+| Assembler | FASM                            |
+
+# Вариант
 
 **Номер варианта везде 3**
