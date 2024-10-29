@@ -16,7 +16,7 @@ public class FileService : IFileService<Employee>
         using (var fstream = File.CreateText(fname))
         {
 
-            var json = JsonSerializer.Serialize(fname);
+            var json = JsonSerializer.Serialize(data);
             fstream.Write(json);
         }
     }
