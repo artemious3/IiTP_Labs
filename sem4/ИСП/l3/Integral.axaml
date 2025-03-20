@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="l3.MainWindow"
+        Title="l3">
+
+
+<DockPanel>
+
+	<Label Name="statusLbl" DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="23"> Hello! </Label>
+
+	
+	<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+		<Button Name="startBtn" Margin="10">Evaluate</Button>
+		<Button Name="cancelBtn" Margin="10">Cancel</Button>
+	</StackPanel>
+
+	<ProgressBar Name="progressBar" Margin="10 10" Height="40" 
+                Minimum="0" Maximum="100" Value="14"
+                ShowProgressText="True"/>
+</DockPanel>
+
+
+
+</Window>
