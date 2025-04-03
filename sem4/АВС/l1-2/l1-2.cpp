@@ -112,7 +112,7 @@ void run_multi_core(){
 
 	std::vector<thread> vec;
 	vec.reserve(16);
-	for(int i = 0; i < 16; ++i){
+	for(int i = 0; i < 8; ++i){
 
 		double beg = a + i*h;
 		vec.push_back(std::thread { [=]{
@@ -122,7 +122,7 @@ void run_multi_core(){
 			sched_setaffinity(0, sizeof(mask), &mask);
 
 			std::ofstream ofs("NOMCres" + std::to_string(i) + ".txt");
-			for (double x = beg; x <= b; x+= 16*h){
+			for (double x = beg; x <= b; x+= 8*h){
 				double target = calcY(x);
 				auto [res, iter, time] = calcX(x, eps, target);
 				ofs << iter << ' '  << time << ' ' << res << '\n';
