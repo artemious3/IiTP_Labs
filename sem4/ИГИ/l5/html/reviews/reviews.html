@@ -1,0 +1,25 @@
+
+{% extends "./base.html" %}
+
+{% block content %}
+
+    {% for review in reviews %} 
+
+    <strong> {{review.user.first_name}} {{review.user.last_name}}</strong> 
+    <p><strong>Date: </strong> {{review.date}}</p> 
+    <p><strong>Mark: </strong> {{review.mark}} / 5 </p> 
+
+    <p>{{review.text}}</p>
+
+    <hr/>
+
+    {% empty %} 
+
+    No reviews yet
+
+    {% endfor %} 
+
+
+    <a href="{% url 'review_create' %}"> New review </a>
+
+{% endblock content %}

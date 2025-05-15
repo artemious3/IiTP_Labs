@@ -1,0 +1,12 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<p>Welcome, {{user.first_name}} {{user.last_name}}!</p>
+
+
+<a href=" {% url 'staff_orders_unappr'%}">Orders, assigned to you</a>
+<br>
+<a href=" {%url 'staff_orders_appr'%} ">History</a>
+
+{% endblock %}

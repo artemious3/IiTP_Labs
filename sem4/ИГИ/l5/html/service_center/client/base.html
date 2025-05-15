@@ -1,0 +1,21 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Service center </title>
+    </head>
+
+    <body>
+	    <header>
+		    <h1>Service center</h1>
+
+		    <a href="{% url 'client_index' %}"> Home page </a> | 
+		    <a href="{% url 'index' %}"> Index </a>
+	    </header>
+
+	    
+	    {% block content %}{% endblock content %}
+
+    </body>
+</html>

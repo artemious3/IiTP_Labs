@@ -1,0 +1,14 @@
+
+{% extends './base.html' %}
+
+{% block content %}
+
+<h2>Delete spare part `<strong>{{object.spare_part.name}}</strong>`  from order {{ object.order.id }}</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Delete</button>
+</form>
+
+{% endblock %}

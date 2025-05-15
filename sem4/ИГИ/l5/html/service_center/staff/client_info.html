@@ -1,0 +1,13 @@
+
+{% extends './base.html' %}
+
+{% block content %}
+
+<h2>Client info</h2>
+
+<p> <strong>First name:</strong> {{client.user.first_name}}   </p>
+<p> <strong>Last name:</strong> {{client.user.last_name}}   </p>
+<p> <strong>Phone number: </strong> {{client.phone_number}}   </p>
+<p> <strong>Address: </strong> {{client.address}}   </p>
+
+{% endblock %}

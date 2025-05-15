@@ -1,0 +1,20 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<ul> 
+    <!-- Iterate over object_list -->
+    {% for object in object_list %} 
+
+    <strong><h3><a href = "{% url 'vacancy_detail' object.id %}">{{ object.position }}</a></h3></strong> 
+
+    <hr/>
+
+    {% empty %} 
+
+    Company is not hiring right now
+
+    {% endfor %} 
+</ul>
+
+{% endblock content %}

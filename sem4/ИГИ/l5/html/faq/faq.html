@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> FAQ </title>
+    </head>
+
+    <body>
+	    <header>
+		    <h1>FAQ</h1>
+	    </header>
+
+	    <ul>
+
+	    {% for faq in faq_list %} 
+
+	    <p><strong>Q: {{faq.question}}</strong> </p>
+	    <p>A: {{faq.answer}}</p>
+	    <p>{{faq.date}}</p>
+	    <hr/>
+
+	    {% empty %} 
+
+	    {% endfor %} 
+	    </ul>
+
+    </body>
+</html>

@@ -1,0 +1,63 @@
+
+{% extends './base.html' %}
+
+{% block content %}
+
+<h4>These orders were assigned to you and are waiting to be completed:</h4>
+
+
+    {% for order in orders %} 
+    <h3> Order {{order.id}} </h3>
+    <p> <strong>Client:</strong>  {{order.client.user.first_name}} {{order.client.user.last_name}} 
+       <a href="{%url 'staff_client_info' order.client.id%}">(More)</a>
+    </p>
+    <p> <strong>Created:</strong>  {{order.date_created}} </p>
+    <p> <strong>Scheduled:</strong>  {{order.date_scheduled}} </p>
+    <!-- <p> <strong>Scheduled:</strong>  {{order.date_scheduled}} </p> -->
+
+    <h4> Services : </h4>
+    <ul>
+        {% for order_service in order.order_services.all %}
+            <li>
+                {{ order_service.service.name }} 
+                (Price: {{ order_service.service.price }}$., 
+		Amount: {{ order_service.number }})
+            </li>
+        {% empty %}
+            <li>No services in the order</li>
+        {% endfor %}
+    </ul>
+
+    <h4> Spare parts : </h4>
+    <ul>
+        {% for order_sp in order.order_spare_parts.all %}
+            <li>
+                {{ order_sp.spare_part.name }} 
+
+                (Price: {{ order_so.spare_part.price }}$., 
+		Amount: {{ order_sp.number }})
+		<a href="{% url 'staff_sp_update' order_sp.id %}">Change</a>
+		<a href="{% url 'staff_sp_delete' order_sp.id %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No spare parts in the order</li>
+        {% endfor %}
+    </ul>
+
+    <p> <strong>Total service price:</strong>  {{order.total_service_price}}$ </p>
+    <p> <strong>Total spare parts price:</strong>  {{order.total_spare_parts_price}}$ </p>
+    <p> <strong>Total:</strong>  {{order.total_price}}$ </p>
+
+    <a href="{% url 'staff_complete' order.id%}"> Mark as completed </a>
+    <br>
+    <a href="{% url 'staff_sp_add' order.id%}"> Add Spare Part</a>
+    <hr>
+
+    {% empty %}
+
+    <p> No orders yet </p>
+
+    {% endfor %}
+
+{% endblock content %}
+

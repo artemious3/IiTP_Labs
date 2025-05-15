@@ -1,0 +1,95 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<h2>Not submitted orders</h2>
+
+
+    {% for order in unsubmitted_orders %} 
+
+    <h3> Order {{order.id}} </h3>
+
+
+    <p> <strong>Created:</strong>  {{order.date_created}} </p>
+    <p> <strong>Scheduled:</strong>  {{order.date_scheduled}} </p>
+    <p> <strong>Staff:</strong>  {{order.employee}} </p>
+
+    <h4> Services : </h4>
+    <ul>
+        {% for order_service in order.order_services.all %}
+            <li>
+                {{ order_service.service.name }} 
+                (Price: {{ order_service.service.price }}$, 
+		Amount: {{ order_service.number }})
+		<a href="{% url 'order_service_update' order_service.id %}">Change</a>
+		<a href="{% url 'order_service_delete' order_service.id %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No services in the order</li>
+        {% endfor %}
+    </ul>
+
+    <p> <strong>Total service price:</strong>  {{order.total_service_price}}$</p>
+
+    <p> !!! NOTE: spare parts price is not included here.</p>
+
+    <a href="{% url 'order_service_add' order.id %}">Add Service</a>
+    <br>
+    <a href="{% url 'order_submit' order.id %}">Submit</a>
+    <br>
+    <a href="{% url 'order_delete' order.id %}">Delete</a>
+
+    <hr>
+
+    {% empty %}
+
+    <p> No orders yet </p>
+
+    {% endfor %}
+
+
+    <hr>
+<h2>Submitted orders</h2>
+
+    {% for order in submitted_orders %} 
+
+    <h3> Order {{order.id}} </h3>
+    <p> <strong>Created:</strong>  {{order.date_created}} </p>
+    <p> <strong>Staff:</strong>  {{order.employee}} </p>
+    <p> <strong>Scheduled:</strong>  {{order.date_scheduled}} </p>
+
+    <h4> Services : </h4>
+    <ul>
+        {% for order_service in order.order_services.all %}
+            <li>
+                {{ order_service.service.name }} 
+                (Price: {{ order_service.service.price }}$., 
+		Amount: {{ order_service.number }})
+            </li>
+        {% empty %}
+            <li>No services in the order</li>
+        {% endfor %}
+    </ul>
+
+    <p> <strong>Total:</strong>  {{order.total_price}}$ </p>
+
+    <a href="{% url 'order_delete' order.id %}">Delete</a>
+
+    <hr>
+
+    {% empty %}
+
+    <p> No orders yet </p>
+
+    {% endfor %}
+
+
+
+
+    <a href="{% url 'order_new'%}">New order</a>
+
+
+
+{% endblock content %}
+
+

@@ -1,0 +1,15 @@
+
+{% extends './base.html' %}
+
+{% block content %}
+
+
+<h2>Mark order {{ order.id }} as completed?</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Complete</button>
+</form>
+
+{% endblock content %}
+

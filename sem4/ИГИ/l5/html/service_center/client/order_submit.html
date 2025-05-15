@@ -1,0 +1,30 @@
+
+{% extends './base.html' %}
+
+
+{% block content %}
+
+    <h2> Order {{order.id}} </h3>
+    <p> <strong>Created:</strong>  {{order.date_created}} </p>
+    <p> <strong>Scheduled:</strong>  {{order.date_scheduled}} </p>
+
+    <h3> Services : </h3>
+    <ul>
+        {% for order_service in order.order_services.all %}
+            <li>
+                {{ order_service.service.name }} 
+                (Price: {{ order_service.service.price }}$., 
+		Amount: {{ order_service.number }})
+            </li>
+        {% empty %}
+            <li>No services in the order</li>
+        {% endfor %}
+    </ul>
+
+
+    <form action="" method="post">
+	  {% csrf_token %}
+	  <button name="submit" value="true">Submit</button>
+    </form>
+
+{% endblock %}

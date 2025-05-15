@@ -1,0 +1,9 @@
+
+{% extends './base.html' %}
+{% block content %}
+
+<p>You can't submit order without services</p>
+
+<a href="{% url 'orders_unapproved'%}"></a>
+
+{% endblock %}

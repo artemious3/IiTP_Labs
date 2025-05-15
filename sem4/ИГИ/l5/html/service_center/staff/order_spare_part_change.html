@@ -1,0 +1,17 @@
+
+
+{% extends './base.html' %}
+
+{% block content %}
+
+
+<p>Change number of `<strong>{{object.spare_part.name}}</strong>` in <strong>Order {{object.order.id}}</strong></p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Confirm">
+</form>
+
+
+{% endblock %}

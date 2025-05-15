@@ -1,0 +1,56 @@
+
+{% extends "./base.html" %}
+
+{% block content %}
+
+<h2>Completed orders</h2>
+
+    {% for order in orders %} 
+
+    <h3> Order {{order.id}} </h3>
+
+    <p> <strong>Created:</strong>  {{order.date_created}} </p>
+    <p> <strong>Scheduled:</strong>  {{order.date_scheduled}} </p>
+
+    <h4> Services : </h4>
+    <ul>
+        {% for order_service in order.order_services.all %}
+            <li>
+                {{ order_service.service.name }} 
+                (Price: {{ order_service.service.price }}$., 
+		Amount: {{ order_service.number }})
+            </li>
+        {% empty %}
+            <li>No services in the order</li>
+        {% endfor %}
+    </ul>
+
+    <h4> Spare parts : </h4>
+    <ul>
+        {% for order_sp in order.order_spare_parts.all %}
+            <li>
+                {{ order_sp.spare_part.name }} 
+
+                (Price: {{ order_so.spare_part.price }}$., 
+		Amount: {{ order_sp.number }})
+            </li>
+        {% empty %}
+            <li>No spare parts in the order</li>
+        {% endfor %}
+    </ul>
+
+    <p> <strong>Total service price:</strong>  {{order.total_service_price}}$</p>
+    <p> <strong>Total spare parts price:</strong>  {{order.total_spare_parts_price}}$</p>
+    <p> <strong>Total:</strong>  {{order.total_price}}$</p>
+
+    <a href="{% url 'order_delete' order.id %}">Delete</a>
+
+    <hr>
+
+    {% empty %}
+
+    <p> No orders yet </p>
+
+    {% endfor %}
+
+{% endblock %}
