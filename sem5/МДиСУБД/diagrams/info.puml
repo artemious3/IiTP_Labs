@@ -1,0 +1,25 @@
+@startuml
+
+object User 
+object Order
+object Client
+object Product
+object Producer
+object Warehouse
+object RoutePoint
+object Location
+object PaymentMethod
+
+User --o Client
+Client --{ Order 
+Client --{ PaymentMethod
+Order --{ Product
+Order --{ RoutePoint
+
+
+RoutePoint -- Warehouse
+Warehouse -- Location
+
+Producer --{ Product
+
+@enduml

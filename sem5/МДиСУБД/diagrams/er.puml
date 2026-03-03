@@ -1,0 +1,135 @@
+@startuml
+
+entity User {
+	* id : PK
+	--
+	* login: VARCHAR UNIQUE NOT NULL
+	* password : VARCHAR NOT NULL
+	* first_name : VARCHAR NOT NULL
+	* last_name : VARCHAR NOT NULL
+	* phone : VARCHAR UNIQUE NOT NULL
+	* email : VARCHAR UNIQUE NOT NULL
+	* birth_date :  TIMESTAMP NOT NULL
+	* role : ROLE (enum) NOT NULL
+}
+
+
+
+entity Client {
+	* id : PK
+	--
+	* user_id : PK UNIQUE
+}
+
+Client |o--|| User
+
+entity PaymentMethod {
+  * payment_method_id :  PK
+  --
+  * client_id : INT <<PK>> NOT NULL
+  * token : VARCHAR(255) UNIQUE NOT NULL
+  * card_type : VARCHAR(50)  NOT NULL
+  * last_four_digits : VARCHAR(4)
+  * expiration_date : DATE  NOT NULL
+  * is_default : BOOLEAN NOT NULL
+  * created_at : TIMESTAMP NOT NULL
+  * updated_at : TIMESTAMP 
+}
+
+Client ||--o{ PaymentMethod
+
+
+entity Producer {
+	* id : PK
+	--
+	* name : VARCHAR NOT NULL
+	* warehouse_id : PK NOT NULL
+}
+
+
+entity Product {
+	* id : PK
+	--
+	* title : VARCHAR(255) NOT NULL
+	* description : TEXT 
+	* mass : INT
+	* price : INT NOT NULL
+	* producer_id : PK NOT NULL
+}
+
+
+Product }|--|| Producer
+
+
+entity Order {
+	' probably the number of order, like varchar(12)'
+	* id : ORDER_PK 
+	--
+	* client_id : PK NOT NULL
+	* is_confirmed : BOOLEAN NOT NULL
+	* is_routed : BOOLEAN NOT NULL
+	* is_paid : BOOLEAN NOT NULL
+	* is_completed : BOOLEAN NOT NULL
+	* dropsite : PK NOT NULL
+
+	* current_warehouse  : PK
+	* target_warehouse : PK 
+constraint warehouse_check check (current_warehouse is not null or target_warehouse is not null)
+}
+
+Client ||--o{ Order
+
+
+entity OrderProductRelation {
+ * order_id : ORDER_PK
+ * product_id : PK
+ --
+ * amount : INT NOT NULL
+}
+
+
+OrderProductRelation }o--|| Order
+OrderProductRelation }o--|| Product
+
+entity OrderRoutePoints {
+	* order_id : ORDER_PK
+	* warehouse_id : PK 
+	--
+	* index : INT NOT NULL
+}
+
+entity Warehouse {
+	* id : PK
+	--
+	* location_id : POINT NOT NULL
+	* is_dropsite : BOOLEAN NOT NULL
+}
+
+OrderRoutePoints }o--|| Warehouse
+OrderRoutePoints }o--|| Order
+
+
+
+entity Location {
+	* id : PK 
+	--
+	* coordinates : POINT NOT NULL
+	* address : VARCHAR(512) NOT NULL
+}
+
+
+entity Logs {
+	* id : PK, 
+	--
+	* user_id : PK NOT NULL
+	* time : TIMESTAMP NOT NULL, 
+	* text : TEXT NOT NULL
+}
+
+Logs }|--|| User
+
+Warehouse ||--|| Location
+
+@enduml
+
+
